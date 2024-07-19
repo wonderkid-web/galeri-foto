@@ -32,7 +32,7 @@ export const option : AuthOptions = {
             }
           })
     ],
-    callbacks:{
-      
+    pages:{
+      signIn:"/auth/signin"
     }
 }
