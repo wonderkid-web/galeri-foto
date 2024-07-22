@@ -1,0 +1,1 @@
+export const cabang =  ["bagendang", "lhokseumawe", "padang"]

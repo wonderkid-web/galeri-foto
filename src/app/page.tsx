@@ -30,6 +30,7 @@ export default function Home() {
 
   const [kantor, setKantor] = useState<null | KantorType[]>(null);
 
+
   useEffect(() => {
     (async () => {
       const collectionRef = collection(database, "kantor");
@@ -57,6 +58,7 @@ export default function Home() {
     setTahunBox(tahunBox);
   }, []);
 
+
   return (
     <main>
       <h1>TEST</h1>
@@ -73,7 +75,7 @@ export default function Home() {
             id="month"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option selected>Bulan Galery</option>
+            <option defaultValue={null}>Bulan Galery</option>
             <option value="0">Januari</option>
             <option value="1">Februari</option>
             <option value="2">Maret</option>
@@ -94,7 +96,7 @@ export default function Home() {
             id="year"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option selected>Tahun Galery</option>
+            <option defaultValue={null}>Tahun Galery</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
             <option value="2025">2025</option>
