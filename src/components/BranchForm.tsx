@@ -1,5 +1,6 @@
 "use client";
 import { database, imageDb } from "@/lib/firebase";
+import { History } from "@/types";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 // components/BranchForm.tsx
@@ -7,14 +8,7 @@ import React, { ChangeEvent, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-type FormValues = {
-  category: string;
-  photo: FileList;
-  description: string;
-  eventDate: string;
-  newsLink: string;
-  branch: string;
-};
+
 
 const BranchForm: React.FC = () => {
   const [file, setFile] = useState<File | null>();
@@ -25,11 +19,11 @@ const BranchForm: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<History>();
 
   const historyCollection = collection(database, "history");
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<History> = (data) => {
     if (!file) return;
     handleUpload(data);
     // handle form submission
@@ -41,7 +35,7 @@ const BranchForm: React.FC = () => {
     }
   };
 
-  const handleUpload = (data: FormValues) => {
+  const handleUpload = (data: History) => {
     if (!file) return;
 
     const storageRef = ref(imageDb, `images/${file.name}`);
@@ -60,7 +54,7 @@ const BranchForm: React.FC = () => {
       async () => {
         try {
           const photoUrl = await getDownloadURL(uploadTask.snapshot.ref);
-          await addDoc(historyCollection, { ...data, photoUrl, createdAt: serverTimestamp() });
+          await addDoc(historyCollection, { ...data, photoUrl, createdAt: new Date() });
           reset()
           toast.success("History Berhasil di tambah")
         } catch (error) {
@@ -130,8 +124,6 @@ const BranchForm: React.FC = () => {
           onChange={handleFileChange}
           className="p-3 border border-gray-300 rounded-md"
         />
-        {/* <input type="file" id="photo" {...register("photo", { required: true })} className="p-3 border border-gray-300 rounded-md" />  */}
-        {errors.photo && <p className="text-red-500 mt-1">Foto diperlukan.</p>}
       </div>
 
       <div className="flex flex-col">

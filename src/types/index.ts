@@ -1,3 +1,5 @@
+import { URL } from "url";
+
 export type KantorType = {
   nama: string;
 };
@@ -8,4 +10,14 @@ export type FormValues = {
   role: string;
 };
 
-export type Cabang = ["bagendang", "lhokseumawe", "padang"]
+export type History = {
+  newsLink: string;
+  branch: "bagendang" | "lhokseumawe" | "padang";
+  createdAt: string;
+  category: string;
+  photoUrl: string;
+  eventDate: string;
+  description: string;
+};
+
+export type Cabang = ["bagendang", "lhokseumawe", "padang"];

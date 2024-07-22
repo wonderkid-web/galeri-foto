@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { database } from "@/lib/firebase";
 import {
@@ -36,7 +35,7 @@ export default function Home() {
       const collectionRef = collection(database, "kantor");
 
       const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-        const datas = snapshot.docs.map((data) => data.data());
+        const datas = snapshot.docs.map((data) => data.data()) as KantorType[]
         setKantor(datas);
       });
 
@@ -52,6 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     const bulanBox = dates.map((d) => new Date(d).getMonth());
+    // @ts-ignore
     const tahunBox = [...new Set(dates.map((d) => new Date(d).getFullYear()))];
 
     setBulanBox(bulanBox);
@@ -75,7 +75,7 @@ export default function Home() {
             id="month"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option defaultValue={null}>Bulan Galery</option>
+            <option defaultValue={undefined}>Bulan Galery</option>
             <option value="0">Januari</option>
             <option value="1">Februari</option>
             <option value="2">Maret</option>
@@ -96,7 +96,7 @@ export default function Home() {
             id="year"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option defaultValue={null}>Tahun Galery</option>
+            <option defaultValue={undefined}>Tahun Galery</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
             <option value="2025">2025</option>
@@ -136,6 +136,7 @@ export default function Home() {
             bulan: {new Date(d).getMonth()} | tahun: {new Date(d).getFullYear()}
           </p>
         ))}
+
       {dates
         .filter((d) => {
           if (!bulan && !tahun) return dates;
@@ -151,6 +152,7 @@ export default function Home() {
             bulan: {new Date(d).getMonth()} | tahun: {new Date(d).getFullYear()}
           </p>
         ))}
+
     </main>
   );
 }
