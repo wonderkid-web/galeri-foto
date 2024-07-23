@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 // Komponen Header
 const Header = ({ title, date, companyName, companyAddress }: any) => (
   <View style={styles.headerContainer}>
+    {/* <Image src={} /> */}
     <Image src={'/pelindo.png'} style={{width: 100, marginLeft: "40%", border: "solid"}} />
     <Text style={styles.title}>{title}</Text>
     <Text style={styles.info}>{date}</Text>

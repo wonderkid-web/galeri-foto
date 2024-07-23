@@ -25,6 +25,9 @@ const EventPDFPage = () => {
     return (
       <div className="h-full">
         <h1>Download Event PDF</h1>
+        {
+          // history.map(hs=> <p>{hs.photoUrl}</p>)
+        }
         <PDFViewer className="w-3/4 mx-auto h-5/6">
           <Report history={history} />
         </PDFViewer>

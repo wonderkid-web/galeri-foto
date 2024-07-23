@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const [history, setHistory] = useState<History[] | null>(null);
+
   const [selectedBranch, setSelectedBranch] = useState<
     Cabang[0] | Cabang[1] | Cabang[2] | null
   >(null);

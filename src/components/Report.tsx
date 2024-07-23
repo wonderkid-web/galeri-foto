@@ -59,17 +59,14 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   image: {
-    width: "100%",
+    width: "90%",
     height: "auto",
     marginTop: 10,
   },
 });
 
-
-
 // Create Document Component
 const Report = ({ history }: { history: History[] }) => {
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -87,7 +84,7 @@ const Report = ({ history }: { history: History[] }) => {
               "Branch",
               "Created At",
               "Category",
-              // "Photo URL",
+              "Photo URL",
               "Event Date",
               "Description",
             ].map((header, index) => (
@@ -97,7 +94,7 @@ const Report = ({ history }: { history: History[] }) => {
             ))}
           </View>
           {/* Data Tabel */}
-          
+
           {history.map((item, rowIndex) => (
             <View style={styles.tableRow} key={rowIndex}>
               <View style={styles.tableCol}>
@@ -107,14 +104,28 @@ const Report = ({ history }: { history: History[] }) => {
                 <Text style={styles.tableCell}>{item.branch}</Text>
               </View>
               <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{formatter.format(item.createdAt)}</Text>
+                <Text style={styles.tableCell}>
+                  {formatter.format(item.createdAt)}
+                </Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{item.category}</Text>
               </View>
-              {/* <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.photoUrl}</Text>
-              </View> */}
+              <View style={styles.tableCol}>
+                {/* <Text style={styles.tableCell}>{item.photoUrl}</Text> */}
+                {/* <Image src={item.photoUrl} style={styles.image} /> */}
+                {/* <Image src={'https://firebasestorage.googleapis.com/v0/b/library-react-49505.appspot.com/o/images%2FScreenshot%20from%202024-07-18%2017-24-05.png?alt=media&token=293d2431-c977-4328-8fbc-679acd5069c5'} style={{width: 100, marginLeft: "40%", border: "solid"}} /> */}
+                
+                <Image
+                  style={{ width: 100, marginLeft: "40%", border: "solid" }}
+                  src={{
+                    uri: item.photoUrl,
+                    method: "GET",
+                    headers: { "Cache-Control": "no-cache" },
+                    body: "",
+                  }}
+                />
+              </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>{item.eventDate}</Text>
               </View>
