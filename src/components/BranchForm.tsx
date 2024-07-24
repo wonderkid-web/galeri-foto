@@ -8,10 +8,8 @@ import React, { ChangeEvent, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-
-
 const BranchForm: React.FC = () => {
-  const [file, setFile] = useState<File | null>();
+  const [file, setFile] = useState<ArrayBuffer | string | null>();
   const [progress, setProgress] = useState<number>(0);
 
   const {
@@ -31,38 +29,65 @@ const BranchForm: React.FC = () => {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const rawFile = e.target.files[0];
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setFile(reader.result);
+      };
+
+      reader.readAsDataURL(rawFile)
     }
   };
 
-  const handleUpload = (data: History) => {
+  const handleUpload = async (data: History) => {
     if (!file) return;
 
-    const storageRef = ref(imageDb, `images/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    try {
+      const photoUrl = file
+      await addDoc(historyCollection, {
+        ...data,
+        photoUrl,
+        createdAt: new Date(),
+      });
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress);
-      },
-      (error) => {
-        console.error("Upload failed:", error);
-      },
-      async () => {
-        try {
-          const photoUrl = await getDownloadURL(uploadTask.snapshot.ref);
-          await addDoc(historyCollection, { ...data, photoUrl, createdAt: new Date() });
-          reset()
-          toast.success("History Berhasil di tambah")
-        } catch (error) {
-          toast.warning("Gagal Menambahkan History nih")
-        }
-      }
-    );
+      reset();
+
+      toast.success("History Berhasil di tambah");
+    } catch (error) {
+      toast.warning("Gagal Menambahkan History nih");
+    }
   };
+
+  // const handleUpload = (data: History) => {
+  //   if (!file) return;
+
+  //   const storageRef = ref(imageDb, `images/${file.name}`);
+  //   const uploadTask = uploadBytesResumable(storageRef, file);
+
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       const progress =
+  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //       setProgress(progress);
+  //     },
+  //     (error) => {
+  //       console.error("Upload failed:", error);
+  //     },
+  //     async () => {
+  //       try {
+  //         const photoUrl = await getDownloadURL(uploadTask.snapshot.ref);
+  //         await addDoc(historyCollection, { ...data, photoUrl, createdAt: new Date() });
+  //         reset()
+  //         toast.success("History Berhasil di tambah")
+  //       } catch (error) {
+  //         toast.warning("Gagal Menambahkan History nih")
+  //       }
+  //     }
+  //   );
+  // };
 
   return (
     <form

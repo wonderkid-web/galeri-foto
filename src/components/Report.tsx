@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   image: {
     width: "90%",
     height: "auto",
-    marginTop: 10,
+    marginVertical: 10,
+    marginHorizontal: "auto"
   },
 });
 
@@ -80,13 +81,13 @@ const Report = ({ history }: { history: History[] }) => {
           {/* Header Tabel */}
           <View style={styles.tableRow}>
             {[
-              "News Link",
-              "Branch",
-              "Created At",
-              "Category",
-              "Photo URL",
-              "Event Date",
-              "Description",
+              "Link Berita",
+              "Cabang",
+              "Tanggal",
+              "Kategori",
+              "Bukti Foto",
+              "Tanggal Acara",
+              "Deskripsi",
             ].map((header, index) => (
               <View style={styles.tableCol} key={index}>
                 <Text style={styles.tableCellHeader}>{header}</Text>
@@ -117,13 +118,9 @@ const Report = ({ history }: { history: History[] }) => {
                 {/* <Image src={'https://firebasestorage.googleapis.com/v0/b/library-react-49505.appspot.com/o/images%2FScreenshot%20from%202024-07-18%2017-24-05.png?alt=media&token=293d2431-c977-4328-8fbc-679acd5069c5'} style={{width: 100, marginLeft: "40%", border: "solid"}} /> */}
                 
                 <Image
-                  style={{ width: 100, marginLeft: "40%", border: "solid" }}
-                  src={{
-                    uri: item.photoUrl,
-                    method: "GET",
-                    headers: { "Cache-Control": "no-cache" },
-                    body: "",
-                  }}
+                style={styles.image}
+                  // style={{ width: 100, marginLeft: "40%", border: "solid" }}
+                  src={item.photoUrl}
                 />
               </View>
               <View style={styles.tableCol}>
