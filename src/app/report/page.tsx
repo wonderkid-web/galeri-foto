@@ -85,16 +85,19 @@ const EventPDFPage = () => {
         Filter Konversi Galery
       </h1>
 
+      <h1 className="text-2xl mb-4 text-sky-600">Pilih Jenis Waktu Filter</h1>
+
       <Select<SelectedFilterDateType>
         // @ts-ignore
         onChange={(e) => setFilteredType(e?.value || "hari")}
         //@ts-ignore
         options={optionDate}
+        className="w-4/5 mb-5 mx-auto"
       />
 
-      <div className="mx-auto w-full flex">
+      <div className="mx-auto w-full flex mb-12">
         <DateRangePicker
-        // @ts-ignore
+          // @ts-ignore
           onChange={({ selection }: { selection: SelectionDate }) =>
             setSelected([selection])
           }
@@ -108,23 +111,30 @@ const EventPDFPage = () => {
       </div>
 
       {filteredHistory.length > 0 && (
-        <div className=" h-5/6 flex gap-8 flex-col justify-center items-center">
-          <PDFViewer className="w-3/4 mx-auto h-full">
-            <Report history={filteredHistory} />
-          </PDFViewer>
-          <PDFDownloadLink
-            document={<Report history={filteredHistory} />}
-            fileName="event.pdf"
-          >
-            {({ blob, url, loading, error }) =>
-              loading ? (
-                "Loading document..."
-              ) : (
-                <p className="bg-green-500 text-white rounded-md px-3 py-2 text-2xl">Download PDF</p>
-              )
-            }
-          </PDFDownloadLink>
-        </div>
+        <>
+          <h1 className="text-2xl mb-4 text-sky-600">
+            Sample PDF yang akan terdownload
+          </h1>
+          <div className=" h-screen flex gap-8 flex-col justify-center items-center">
+            <PDFViewer className="w-full mx-auto h-full">
+              <Report history={filteredHistory} />
+            </PDFViewer>
+            <PDFDownloadLink
+              document={<Report history={filteredHistory} />}
+              fileName="event.pdf"
+            >
+              {({ blob, url, loading, error }) =>
+                loading ? (
+                  "Loading document..."
+                ) : (
+                  <p className="bg-green-500 text-white rounded-md px-3 py-2 text-2xl">
+                    Download PDF
+                  </p>
+                )
+              }
+            </PDFDownloadLink>
+          </div>
+        </>
       )}
     </div>
   );

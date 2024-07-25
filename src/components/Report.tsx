@@ -42,6 +42,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderTopWidth: 0,
   },
+  tableColImage: {
+    width: "100%", // Sesuaikan persentase ini sesuai kebutuhan
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+  },
   tableCellHeader: {
     margin: 5,
     fontSize: 12,
@@ -59,10 +66,10 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   image: {
-    width: "90%",
+    width: "60%",
     height: "auto",
     marginVertical: 10,
-    marginHorizontal: "auto"
+    marginHorizontal: "auto",
   },
 });
 
@@ -85,7 +92,7 @@ const Report = ({ history }: { history: History[] }) => {
               "Cabang",
               "Tanggal",
               "Kategori",
-              "Bukti Foto",
+              // "Bukti Foto",
               "Tanggal Acara",
               "Deskripsi",
             ].map((header, index) => (
@@ -95,39 +102,43 @@ const Report = ({ history }: { history: History[] }) => {
             ))}
           </View>
           {/* Data Tabel */}
-
           {history.map((item, rowIndex) => (
-            <View style={styles.tableRow} key={rowIndex}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.newsLink}</Text>
+            <View key={rowIndex}>
+              <View style={styles.tableRow} >
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>{item.newsLink}</Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>{item.branch}</Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>
+                    {formatter.format(item.createdAt)}
+                  </Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>{item.category}</Text>
+                </View>
+                {/* <View style={styles.tableCol}>
+                    <Image
+                    style={styles.image}
+                    // style={{ width: 100, marginLeft: "40%", border: "solid" }}
+                    src={item.photoUrl}
+                  />
+                </View> */}
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>{item.eventDate}</Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}>{item.description}</Text>
+                </View>
               </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.branch}</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  {formatter.format(item.createdAt)}
-                </Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.category}</Text>
-              </View>
-              <View style={styles.tableCol}>
-                {/* <Text style={styles.tableCell}>{item.photoUrl}</Text> */}
-                {/* <Image src={item.photoUrl} style={styles.image} /> */}
-                {/* <Image src={'https://firebasestorage.googleapis.com/v0/b/library-react-49505.appspot.com/o/images%2FScreenshot%20from%202024-07-18%2017-24-05.png?alt=media&token=293d2431-c977-4328-8fbc-679acd5069c5'} style={{width: 100, marginLeft: "40%", border: "solid"}} /> */}
-                
+              <View style={styles.tableColImage}>
                 <Image
-                style={styles.image}
+                  style={styles.image}
                   // style={{ width: 100, marginLeft: "40%", border: "solid" }}
                   src={item.photoUrl}
                 />
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.eventDate}</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{item.description}</Text>
               </View>
             </View>
           ))}

@@ -35,8 +35,9 @@ const Page = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold capitalize">Galery {selectedBranch ? selectedBranch : "Semua Cabang"}</h1>
-      <ul className="flex gap-4 justify-center mx-auto mb-8">
+      <h1 className="text-4xl font-semibold capitalize text-sky-700 text-center mb-8">Galery {selectedBranch ? selectedBranch : "Semua Cabang"}</h1>
+
+      <ul className="flex gap-4 flex-wrap justify-center mx-auto mb-8 overflow-auto items-stretch place-items-center">
         <li
           onClick={() => handleSelectedBranch(null)}
           className="px-2 py-1 rounded-xl transition hover:scale-110 cursor-pointer bg-sky-700 text-white font-semibold"
@@ -49,13 +50,13 @@ const Page = () => {
             onClick={() =>
               handleSelectedBranch(c as Cabang[0] | Cabang[1] | Cabang[2])
             }
-            className="px-2 py-1 rounded-xl transition hover:scale-110 cursor-pointer bg-sky-700 text-white font-semibold"
+            className="w-32 text-center px-2 py-1 rounded-xl transition hover:scale-110 cursor-pointer bg-sky-700 text-white font-semibold"
           >
             {c}
           </li>
         ))}
       </ul>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid lg:grid-cols-3 gap-4">
         {history ? (
           history
             .filter((c) =>

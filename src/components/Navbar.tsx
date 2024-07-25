@@ -53,7 +53,7 @@ function Navbar({ isVisible }: { isVisible: boolean }) {
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-semibold flex flex-col px-8 py-1 mt-4 border bg-white border-gray-100 rounded-md text-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {mediaSosialPelindo.map((socmed) => (
-              <li key={socmed.url} className="w-12 h-12 relative">
+              <li key={socmed.url} className="w-5 h-5 relative">
                 <Link href={socmed.url} >
                   <Image src={socmed.icon} alt={socmed.platform} objectFit="coveZr" />
                 </Link>

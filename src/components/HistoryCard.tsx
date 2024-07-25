@@ -13,7 +13,7 @@ const HistoryCard = ( {history} : {history: History}) => {
 
   if(!history.category) return <p>Kosong</p>
   return (
-    <div className="rounded overflow-hidden shadow-lg bg-sky-700 m-4">
+    <div className="rounded overflow-hidden shadow-lg bg-sky-700 m-4 flex flex-col justify-between">
       <img className="w-full" src={photoUrl} alt={description} />
       <div className="text-white px-6 py-4 overflow-auto max-h-56">
         <div className="font-bold text-xl mb-2">{description}</div>
@@ -30,7 +30,7 @@ const HistoryCard = ( {history} : {history: History}) => {
           Created At: {formatter.format(+createdAt as number)}
         </p>
       </div>
-      <div className="px-6 pt-4 pb-2 flex justify-between">  
+      <div className="flex justify-around">  
         <Link href={newsLink} className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</Link>
         <Link href={`/galery/edit/${id}`} className="inline-block bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
       

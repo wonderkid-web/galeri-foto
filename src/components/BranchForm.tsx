@@ -1,5 +1,6 @@
 "use client";
 import { database, imageDb } from "@/lib/firebase";
+import { cabang } from "@/static";
 import { History } from "@/types";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -127,9 +128,10 @@ const BranchForm: React.FC = () => {
           {...register("branch", { required: true })}
           className="p-2 border border-gray-300 rounded-md"
         >
-          <option value="lhokseumawe">Lhoksuemawe</option>
-          <option value="bagendang">Bagendang</option>
-          <option value="medan">Medan</option>
+          {
+          
+            cabang.map(c=><option key={c} value={c}>{c}</option>)
+          }          
         </select>
         {errors.branch && (
           <p className="text-red-500 mt-1">Kategori diperlukan.</p>

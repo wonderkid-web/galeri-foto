@@ -5,7 +5,7 @@ import React from "react";
 const BranchPage: React.FC = () => {
   return (
     <>
-      <h1 className="text-2xl font-semibold">Form Input Galery</h1>
+      <h1 className="text-4xl text-sky-700 text-center font-semibold">Form Input Galery</h1>
       <BranchForm />
     </>
   );

@@ -4,7 +4,7 @@ import twitter from "/public/twitter.png"
 import youtube from "/public/youtube.png"
 import instagram from "/public/instagram.png"
 
-export const cabang =  ["bagendang", "lhokseumawe", "medan"]
+export const cabang =   ["Badas", "Bagendang", "Balikpapan", "Belawan", "Bumiharjo", "Dumai", "Garongkong", "Gresik", "Jamrud Nilam Mirah", "Lembar", "Lhokseumawe", "Makassar", "Malayahati", "Pare-Pare", "Tanjung Emas", "Tanjung Intan", "Tanjung Wangi", "Trisakti"]
 
 export const formatter = new Intl.DateTimeFormat('id-ID', {
   weekday: 'long',
