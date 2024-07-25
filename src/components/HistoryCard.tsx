@@ -15,7 +15,7 @@ const HistoryCard = ( {history} : {history: History}) => {
   return (
     <div className="rounded overflow-hidden shadow-lg bg-sky-700 m-4">
       <img className="w-full" src={photoUrl} alt={description} />
-      <div className="text-white px-6 py-4">
+      <div className="text-white px-6 py-4 overflow-auto max-h-56">
         <div className="font-bold text-xl mb-2">{description}</div>
         <p className="text-base">
           Branch: {branch}

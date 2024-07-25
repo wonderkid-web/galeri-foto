@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Wrapper from "@/components/Wrapper";
 import { Toaster } from "sonner";
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
 
 const inter = Inter({ subsets: ["latin"] });
 

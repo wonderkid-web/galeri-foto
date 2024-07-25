@@ -55,7 +55,7 @@ const Page = () => {
           </li>
         ))}
       </ul>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {history ? (
           history
             .filter((c) =>
@@ -65,7 +65,7 @@ const Page = () => {
             )
             .map((c) => <HistoryCard key={c.createdAt} history={c} />)
         ) : (
-          <Loader style="mx-auto w-24 mt-24" />
+          <Loader style="mx-auto w-24 mt-56 col-span-full" />
         )}
       </div>
     </div>

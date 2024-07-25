@@ -47,3 +47,10 @@ export const mediaSosialPelindo : SocialMediaPelindo[] = [
       icon: youtube
   }
 ];
+
+export const optionDate = [
+  { value: 'hari', label: 'Hari' },
+  { value: 'minggu', label: 'Mingguan' },
+  { value: 'tahun', label: 'Tahunan' },
+  { value: 'all', label: 'Seluruh Galery' },
+]
