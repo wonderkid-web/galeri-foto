@@ -1,11 +1,16 @@
 import Link from "next/link";
 import React from "react";
-import logo from "/public/pelindo.png"
+import logo from "/public/pelindo.png";
 import Image from "next/image";
+import { mediaSosialPelindo } from "@/static";
 
-function Navbar({isVisible}: {isVisible:boolean}) {
+function Navbar({ isVisible }: { isVisible: boolean }) {
   return (
-    <nav className={`${isVisible && 'hidden'} row-span-1 col-span-full bg-sky-500 border-gray-200 text-white dark:bg-gray-900`}>
+    <nav
+      className={`${
+        isVisible && "hidden"
+      } row-span-1 col-span-full bg-sky-500 border-gray-200 text-white dark:bg-gray-900`}
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href="https://flowbite.com/"
@@ -46,22 +51,14 @@ function Navbar({isVisible}: {isVisible:boolean}) {
         </button>
 
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-semibold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg text-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-                <Link href="#">Twitter</Link>
-            </li>
-            <li>
-                <Link href="#">Facebook</Link>
-            </li>
-            <li>
-                <Link href="#">Instagram</Link>
-            </li>
-            <li>
-                <Link href="#">LinkedIn</Link>
-            </li>
-            <li>
-                <Link href="#">YouTube</Link>
-            </li> 
+          <ul className="font-semibold flex flex-col px-8 py-1 mt-4 border bg-white border-gray-100 rounded-md text-white md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {mediaSosialPelindo.map((socmed) => (
+              <li key={socmed.url} className="w-12 h-12 relative">
+                <Link href={socmed.url} >
+                  <Image src={socmed.icon} alt={socmed.platform} objectFit="coveZr" />
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

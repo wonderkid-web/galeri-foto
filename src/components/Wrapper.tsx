@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 const Wrapper = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
@@ -20,9 +21,10 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
       >
         <Navbar isVisible={isVisible} />
         <Sidebar isVisible={isVisible} />
-        <main className="pt-8 overflow-auto row-start-2 -row-end-1 col-start-4 col-end-13 ">
+        <main className="pt-8 overflow-auto row-start-2 -row-end-2 col-start-3 col-end-13 pl-8">
           {children}
         </main>
+       <Footer />
       </div>
     </SessionProvider>
   );

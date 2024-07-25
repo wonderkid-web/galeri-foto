@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { HTMLProps } from 'react'
 
-function Loader({style = ""}:{style:string}) {
+function Loader({style = ""}:{style:HTMLProps<HTMLElement>["className"]}) {
   return <div className={`${style} loader`}></div>
 }
 

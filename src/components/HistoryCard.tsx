@@ -1,10 +1,12 @@
 // components/Card.js
 import { formatter } from '@/static';
 import { History } from '@/types';
+import Link from 'next/link';
 import React from 'react';
+import DeleteButton from './DeleteButton';
 
 const HistoryCard = ( {history} : {history: History}) => {
-  const { newsLink, branch, createdAt, category, photoUrl, eventDate, description } = history
+  const { newsLink, branch, createdAt, category, photoUrl, eventDate, description, id } = history
 
   console.log(typeof history)
 
@@ -28,9 +30,13 @@ const HistoryCard = ( {history} : {history: History}) => {
           Created At: {formatter.format(+createdAt as number)}
         </p>
       </div>
-      <div className="px-6 pt-4 pb-2">
+      <div className="px-6 pt-4 pb-2 flex justify-between">  
+        <Link href={newsLink} className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</Link>
+        <Link href={`/galery/edit/${id}`} className="inline-block bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
+      
+        <DeleteButton id={id} />
+
         
-        <a href={newsLink} className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</a>
       </div>
     </div>
   );

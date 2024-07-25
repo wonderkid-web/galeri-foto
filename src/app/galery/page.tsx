@@ -19,7 +19,7 @@ const Page = () => {
   useEffect(() => {
     (async () => {
       const unsubscribe = onSnapshot(historyCollection, (snapshot) => {
-        const histories = snapshot.docs.map((doc) => doc.data()) as History[];
+        const histories = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})) as History[];
         setHistory(histories);
       });
 

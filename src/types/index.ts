@@ -1,3 +1,5 @@
+import { UUID } from "crypto";
+import { StaticImageData } from "next/image";
 import { URL } from "url";
 
 export type KantorType = {
@@ -11,6 +13,7 @@ export type FormValues = {
 };
 
 export type History = {
+  id: UUID;
   newsLink: string;
   branch: "bagendang" | "lhokseumawe" | "padang";
   createdAt: string;
@@ -21,3 +24,10 @@ export type History = {
 };
 
 export type Cabang = ["bagendang", "lhokseumawe", "padang"];
+
+
+export type SocialMediaPelindo = {
+  platform: string,
+  url: string,
+  icon: StaticImageData
+}
