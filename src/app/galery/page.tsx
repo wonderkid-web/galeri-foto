@@ -6,6 +6,7 @@ import { cabang } from "@/static";
 import { Cabang, History } from "@/types";
 import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { Key } from "readline";
 
 const Page = () => {
   const [history, setHistory] = useState<History[] | null>(null);
@@ -64,7 +65,7 @@ const Page = () => {
                 ? c.branch.toLowerCase() === selectedBranch.toLowerCase()
                 : history
             )
-            .map((c) => <HistoryCard key={c.createdAt} history={c} />)
+            .map((c) => <HistoryCard key={c.id} history={c} />)
         ) : (
           <Loader style="mx-auto w-24 mt-56 col-span-full" />
         )}

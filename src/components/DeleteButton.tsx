@@ -22,7 +22,7 @@ function DeleteButton({ id }: { id: History["id"] }) {
     }
 
   return (
-    <div onClick={handleDelete} className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+    <div onClick={handleDelete} className="hover:cursor-pointer hover:scale-110 inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
       Hapus
     </div>
   );

@@ -80,7 +80,7 @@ const EventPDFPage = () => {
   const filteredHistory = history?.filter(filterHistory) || [];
 
   return (
-    <div className="h-full">
+    <div className="h-full pb-24">
       <h1 className="text-4xl font-semibold text-center mb-4 text-sky-700">
         Filter Konversi Galery
       </h1>

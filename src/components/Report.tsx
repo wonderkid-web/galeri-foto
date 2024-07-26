@@ -71,6 +71,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: "auto",
   },
+  tableColImageDoc: {
+    width: "60%",
+    // height: "auto",
+    marginHorizontal: "auto",
+  }
 });
 
 // Create Document Component
@@ -135,7 +140,7 @@ const Report = ({ history }: { history: History[] }) => {
               </View>
               <View style={styles.tableColImage}>
                 <Image
-                  style={styles.image}
+                  style={styles.tableColImageDoc}
                   // style={{ width: 100, marginLeft: "40%", border: "solid" }}
                   src={item.photoUrl}
                 />

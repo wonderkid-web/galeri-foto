@@ -1,8 +1,10 @@
-import { SocialMediaPelindo } from "@/types";
+import { History, SocialMediaPelindo } from "@/types";
 import facebook from "/public/facebook.png"
 import twitter from "/public/twitter.png"
 import youtube from "/public/youtube.png"
 import instagram from "/public/instagram.png"
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
 export const cabang =   ["Badas", "Bagendang", "Balikpapan", "Belawan", "Bumiharjo", "Dumai", "Garongkong", "Gresik", "Jamrud Nilam Mirah", "Lembar", "Lhokseumawe", "Makassar", "Malayahati", "Pare-Pare", "Tanjung Emas", "Tanjung Intan", "Tanjung Wangi", "Trisakti"]
 
@@ -54,3 +56,9 @@ export const optionDate = [
   { value: 'tahun', label: 'Tahunan' },
   { value: 'all', label: 'Seluruh Galery' },
 ]
+
+// Mengubah ke format tanggal dan waktu dengan locale 'id'
+export const formattedDate = (tanggal: History["createdAt"]) =>{
+  const date = new Date(+tanggal.seconds * 1000)
+  return format(date, 'dd MMMM yyyy HH:mm', { locale: id });
+}

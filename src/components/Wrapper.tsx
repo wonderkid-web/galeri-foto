@@ -21,7 +21,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
       >
         <Navbar isVisible={isVisible} />
         <Sidebar isVisible={isVisible} />
-        <main className="pt-8 overflow-auto row-start-2 -row-end-2 col-start-3 col-end-13 pl-8">
+        <main className="pt-8 overflow-auto row-start-2 -row-end-2 col-start-3 col-end-13 pl-8 pb-28">
         {children}
         </main>
        <Footer isVisible={isVisible} />

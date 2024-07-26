@@ -1,5 +1,5 @@
 // components/Card.js
-import { formatter } from '@/static';
+import { formattedDate, formatter } from '@/static';
 import { History } from '@/types';
 import Link from 'next/link';
 import React from 'react';
@@ -7,9 +7,6 @@ import DeleteButton from './DeleteButton';
 
 const HistoryCard = ( {history} : {history: History}) => {
   const { newsLink, branch, createdAt, category, photoUrl, eventDate, description, id } = history
-
-  console.log(typeof history)
-
 
   if(!history.category) return <p>Kosong</p>
   return (
@@ -27,12 +24,12 @@ const HistoryCard = ( {history} : {history: History}) => {
           Event Date: {new Date(eventDate).toLocaleDateString()}
         </p>
         <p className="text-base">
-          Created At: {formatter.format(+createdAt as number)}
+          Created At: {formattedDate(createdAt)}
         </p>
       </div>
       <div className="flex justify-around">  
-        <Link href={newsLink} className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</Link>
-        <Link href={`/galery/edit/${id}`} className="inline-block bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
+        <Link href={newsLink} className="inline-block hover:scale-110 bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</Link>
+        <Link href={`/galery/edit/${id}`} className="inline-block hover:scale-110 bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
       
         <DeleteButton id={id} />
 

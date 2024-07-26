@@ -1,158 +1,117 @@
-"use client";
-import { database } from "@/lib/firebase";
-import {
-  DocumentData,
-  collection,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
-import { signOut } from "next-auth/react";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import logo from "/public/pelindo.png";
+import baca from "/public/mengajar.jpg";
+import pengembangan from "/public/pengembangan.png";
+import lingkungan from "/public/lingkungan.jpg";
 
-export type KantorType = {
-  nama: string;
-};
-
-const dates = [
-  "2023-08-10T08:24:33.127Z",
-  "2023-12-15T06:50:20.923Z",
-  "2024-03-04T14:30:59.114Z",
-  "2023-11-22T19:47:48.854Z",
-  "2024-05-12T22:18:37.639Z",
-];
-
-export default function Home() {
-  const [bulanBox, setBulanBox] = useState<Number[] | null>(null);
-  const [tahunBox, setTahunBox] = useState<Number[] | null>(null);
-  const [bulan, setBulan] = useState<Number | null>(null);
-  const [tahun, setTahun] = useState<Number | null>(null);
-
-  const [kantor, setKantor] = useState<null | KantorType[]>(null);
-
-
-  useEffect(() => {
-    (async () => {
-      const collectionRef = collection(database, "kantor");
-
-      const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-        const datas = snapshot.docs.map((data) => data.data()) as KantorType[]
-        setKantor(datas);
-      });
-
-      return () => unsubscribe();
-    })();
-  }, []);
-
-  // const collectionRef = collection(database, "kantor");
-
-  // const kantorCollectionRef = await getDocs(collectionRef);
-
-  // const data  = kantorCollectionRef.docs.map(doc=>doc.data())
-
-  useEffect(() => {
-    const bulanBox = dates.map((d) => new Date(d).getMonth());
-    // @ts-ignore
-    const tahunBox = [...new Set(dates.map((d) => new Date(d).getFullYear()))];
-
-    setBulanBox(bulanBox);
-    setTahunBox(tahunBox);
-  }, []);
-
-
+export default function page() {
   return (
-    <main>
-      <h1>TEST</h1>
-      <pre>{JSON.stringify(kantor)}</pre>
+    <div className="container mx-auto p-4">
+      <h1 className="text-sky-700 font-semibold text-center mb-24 underline text-4xl">
+        Selamat Datang Pada Halaman Admin
+      </h1>
 
-      <button onClick={() => signOut()}>signout</button>
-      <hr />
-      <hr />
+      <div className="grid grid-cols-3 justify-between w-full items-center gap-8">
+        <div className="col-span-1 text-center mb-8 relative w-2/3 h-2/3 shadow-lg justify-self-end border rounded-md">
+          <Image src={logo} alt="Pelindo Peduli" objectFit="cover" />
+        </div>
 
-      <div className="mt-4 flex gap-2 justify-end pr-6 w-full">
-        <form>
-          <select
-            onChange={(e) => setBulan(+e.currentTarget.value)}
-            id="month"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option defaultValue={undefined}>Bulan Galery</option>
-            <option value="0">Januari</option>
-            <option value="1">Februari</option>
-            <option value="2">Maret</option>
-            <option value="3">April</option>
-            <option value="4">Mei</option>
-            <option value="5">Juni</option>
-            <option value="6">Juli</option>
-            <option value="7">Agustus</option>
-            <option value="8">September</option>
-            <option value="9">Oktober</option>
-            <option value="10">November</option>
-            <option value="11">Desember</option>
-          </select>
-        </form>
-        <form>
-          <select
-            onChange={(e) => setTahun(+e.currentTarget.value)}
-            id="year"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option defaultValue={undefined}>Tahun Galery</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-          </select>
-        </form>
+        <div className="col-span-2 flex flex-col justify-end items-end pr-24">
+          <h1 className="text-sky-700 text-4xl font-bold mb-8 text-right">
+            Program TJSL
+          </h1>
+          <p className="text-gray-500 text-lg mb-8 w-2/3 text-justify">
+            Program Tanggung Jawab Sosial dan Lingkungan (TJSL) BUMN adalah
+            kegiatan yang merupakan komitmen perusahaan terhadap pembangunan
+            berkelanjutan dengan memberikan manfaat pada ekonomi, sosial,
+            lingkungan, hukum dan tata kelola dengan prinsip yang lebih
+            terintegrasi, terarah, terukur dampaknya bagi masyarakat luas. Kerap
+            juga disebut CSR (<em>Corporate Social Responsibility</em>). Program
+            TJSL Pelindo yang merupakan 3 program Prioritas, meliputi:
+          </p>
+        </div>
       </div>
 
-      {bulan && tahun && (
-        <>
-          <pre>{JSON.stringify(bulan)}</pre>
-          <pre>{JSON.stringify(bulanBox)}</pre>
-          <hr />
-          <pre>{JSON.stringify(tahun)}</pre>
-          <pre>{JSON.stringify(tahunBox)}</pre>
-        </>
-      )}
-
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-
-      {dates
-        .filter((d) => {
-          if (!bulan && !tahun) return dates;
-
-          if (
-            new Date(d).getMonth() == bulan ||
-            new Date(d).getFullYear() == tahun
-          )
-            return d;
-        })
-        .map((d) => (
-          <p key={d}>
-            bulan: {new Date(d).getMonth()} | tahun: {new Date(d).getFullYear()}
+      <div className="grid grid-cols-3 justify-between w-full items-center gap-8 ">
+        <div className="col-span-2 flex flex-col ml-24">
+          <h1 className="text-sky-700 text-4xl font-bold mb-8">Program TJSL</h1>
+          <p className="text-gray-500 text-lg mb-8 w-2/3 text-justify">
+            Program TJSL bidang pendidikan adalah upaya perusahaan dalam
+            pemerataan pendidikan berkualitas agar anak-anak Indonesia mendapat
+            kemudahan dan akses ilmu pengetahuan serta teknologi. Selain itu,
+            program ini juga bertujuan untuk meningkatkan kompetensi guru,
+            menyediakan fasilitas belajar yang memadai, dan mendorong inovasi
+            dalam metode pengajaran. Dengan demikian, diharapkan generasi muda
+            Indonesia dapat bersaing secara global dan berkontribusi positif
+            bagi kemajuan bangsa.{" "}
           </p>
-        ))}
+        </div>
 
-      {dates
-        .filter((d) => {
-          if (!bulan && !tahun) return dates;
+        <div className="col-span-1 text-center mb-8 relative w-2/3 h-2/3 shadow-lg border rounded-md">
+          <Image src={baca} alt="Pelindo Peduli" objectFit="cover" />
+        </div>
+      </div>
 
-          if (
-            new Date(d).getMonth() == bulan ||
-            new Date(d).getFullYear() == tahun
-          )
-            return d;
-        })
-        .map((d) => (
-          <p key={d}>
-            bulan: {new Date(d).getMonth()} | tahun: {new Date(d).getFullYear()}
+      <div className="grid grid-cols-3 justify-between w-full items-center gap-8">
+        <div className="col-span-1 text-center mb-8 relative w-2/3 h-2/3 shadow-lg justify-self-end border rounded-md">
+          <Image src={lingkungan} alt="Pelindo Peduli" objectFit="cover" />
+        </div>
+
+        <div className="col-span-2 flex flex-col justify-end items-end pr-24">
+          <h1 className="text-sky-700 text-4xl font-bold mb-8 text-right">
+            Program Peduli Lingkungan
+          </h1>
+          <p className="text-gray-500 text-lg mb-8 w-2/3 text-justify">
+            Pelindo mendukung sepenuhnya komitmen pemerintah Indonesia dalam
+            menangani pemanasan global dan perubahan iklim. Apalagi, sebagai
+            korporasi yang bergerak di bidang jasa kepelabuhan dan logistik,
+            Perseroan berpotensi besar terdampak negatif akibat pemanasan global
+            dan perubahan iklim.
           </p>
-        ))}
+        </div>
+      </div>
 
-    </main>
+      <div className="grid grid-cols-3 justify-between w-full items-center gap-8 ">
+        <div className="col-span-2 flex flex-col ml-24">
+          <h1 className="text-sky-700 text-4xl font-bold mb-8">
+            Program Pengembangan UMK (Usaha Menengah Kecil){" "}
+          </h1>
+          <p className="text-gray-500 text-lg mb-8 w-2/3 text-justify">
+            Kontribusi BUMN dalam pemberdayaan terhadap UMKM, koperasi dan
+            masyarakat dikuatkan dengan terbitnya Peraturan Menteri Badan Usaha
+            Milik Negara Republik Indonesia No. PER-05/ MBU/04/2021 tentang
+            Program Tanggung Jawab Sosial dan Lingkungan Badan Usaha Milik
+            Negara (TJSL BUMN). Berdasarkan peraturan terbaru tersebut, BUMN
+            bisa menerapkan TJSL melalui Program Pendanaan Usaha Mikro dan Usaha
+            Kecil atau Program Pendanaan UMK, serta Bantuan dan/atau Kegiatan
+            Lainnya.
+          </p>
+        </div>
+
+        <div className="col-span-1 text-center mb-8 relative w-2/3 h-2/3 shadow-lg border rounded-md">
+          <Image
+            src={pengembangan}
+            alt="Pelindo Peduli"
+            objectFit="cover"
+            className="mt-16"
+          />
+        </div>
+      </div>
+
+      <div>
+        <h1 className="text-sky-700 font-semibold text-center my-8 text-4xl">
+          Temukan Kami Disini
+        </h1>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.1095177011694!2d98.6874494793457!3d3.7863375000000024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3036cf179e7178fd%3A0xb23a81809be5bac1!2sPT%20PELINDO%20MULTI%20TERMINAL%20BRANCH%20BELAWAN!5e0!3m2!1sid!2sid!4v1721981617459!5m2!1sid!2sid"
+          style={{ width: "90%" }}
+          className="mx-auto"
+          height="600"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
   );
 }

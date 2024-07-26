@@ -16,7 +16,7 @@ export type History = {
   id: UUID;
   newsLink: string;
   branch: "bagendang" | "lhokseumawe" | "padang";
-  createdAt: string;
+  createdAt: { seconds: number; nanoseconds: number };
   category: string;
   photoUrl: string;
   eventDate: string;
@@ -25,30 +25,29 @@ export type History = {
 
 export type Cabang = ["bagendang", "lhokseumawe", "padang"];
 
-
 export type SocialMediaPelindo = {
-  platform: string,
-  url: string,
-  icon: StaticImageData
-}
+  platform: string;
+  url: string;
+  icon: StaticImageData;
+};
 
 export type Calendar = {
-  startDate: Date,
-  endDate: Date,
-  key: string,
-}
+  startDate: Date;
+  endDate: Date;
+  key: string;
+};
 
 export type SelectionDate = {
   endDate: Date;
   key: string;
   startDate: Date;
-}
+};
 
 export type SelectedFilterDateType = [
-  { value: 'hari', label: 'Hari' },
-  { value: 'minggu', label: 'Mingguan' },
-  { value: 'tahun', label: 'Tahunan' },
-  { value: 'all', label: 'Seluruh Galery' },
-]
+  { value: "hari"; label: "Hari" },
+  { value: "minggu"; label: "Mingguan" },
+  { value: "tahun"; label: "Tahunan" },
+  { value: "all"; label: "Seluruh Galery" }
+];
 
-export type FilteredType = "hari" | "minggu" | "tahun" | "all"
+export type FilteredType = "hari" | "minggu" | "tahun" | "all";
