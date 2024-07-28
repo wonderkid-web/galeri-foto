@@ -9,7 +9,7 @@ function Sidebar({ isVisible}: { isVisible: boolean, }) {
   const session = useSession()
 
   // @ts-ignore
-  const isAdmin = session.data?.user.role === "admin" ? "/" : "/pegawai"
+  const isAdmin = session.data?.user.role === "admin" ? "" : "/pegawai"
 
   if(session.status !== "loading")
   return (
