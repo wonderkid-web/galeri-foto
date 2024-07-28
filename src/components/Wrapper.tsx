@@ -9,8 +9,8 @@ import Footer from "./Footer";
 
 const Wrapper = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
+  const isVisible = pathname.includes("/auth") ? true : false;
 
-  const isVisible = pathname.includes("/auth/signin") ? true : false;
 
   return (
     <SessionProvider>
@@ -20,7 +20,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
         } grid-cols-12 grid-rows-12 max-h-screen w-screen overflow-hidden`}
       >
         <Navbar isVisible={isVisible} />
-        <Sidebar isVisible={isVisible} />
+        <Sidebar  isVisible={isVisible} />
         <main className="pt-8 overflow-auto row-start-2 -row-end-2 col-start-3 col-end-13 pl-8 pb-28">
         {children}
         </main>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import DeleteButton from './DeleteButton';
 
-const HistoryCard = ( {history} : {history: History}) => {
+const HistoryCard = ( {history, isAdmin = ""} : {history: History, isAdmin?:string}) => {
   const { newsLink, branch, createdAt, category, photoUrl, eventDate, description, id } = history
 
   if(!history.category) return <p>Kosong</p>
@@ -29,7 +29,7 @@ const HistoryCard = ( {history} : {history: History}) => {
       </div>
       <div className="flex justify-around">  
         <Link href={newsLink} className="inline-block hover:scale-110 bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Read More</Link>
-        <Link href={`/galery/edit/${id}`} className="inline-block hover:scale-110 bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
+        <Link href={`${isAdmin}/galery/edit/${id}`} className="inline-block hover:scale-110 bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Edit</Link>
       
         <DeleteButton id={id} />
 

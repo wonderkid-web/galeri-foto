@@ -6,24 +6,26 @@ export type KantorType = {
   nama: string;
 };
 
+export type TotalCabang = ["Badas", "Bagendang", "Balikpapan", "Belawan", "Bumiharjo", "Dumai", "Garongkong", "Gresik", "Jamrud Nilam Mirah", "Lembar", "Lhokseumawe", "Makassar", "Malayahati", "Pare-Pare", "Tanjung Emas", "Tanjung Intan", "Tanjung Wangi", "Trisakti"];
+export type Cabang = "Badas"| "Bagendang"| "Balikpapan"| "Belawan"| "Bumiharjo"| "Dumai"| "Garongkong"| "Gresik"| "Jamrud Nilam Mirah"| "Lembar"| "Lhokseumawe"| "Makassar"| "Malayahati"| "Pare-Pare"| "Tanjung Emas"| "Tanjung Intan"| "Tanjung Wangi"| "Trisakti";
+
 export type FormValues = {
-  username: string;
+  email: string;
   password: string;
-  role: string;
+  role?: string;
+  branch?: Cabang;
 };
 
 export type History = {
   id: UUID;
   newsLink: string;
-  branch: "bagendang" | "lhokseumawe" | "padang";
+  branch: Cabang;
   createdAt: { seconds: number; nanoseconds: number };
   category: string;
   photoUrl: string;
   eventDate: string;
   description: string;
 };
-
-export type Cabang = ["bagendang", "lhokseumawe", "padang"];
 
 export type SocialMediaPelindo = {
   platform: string;

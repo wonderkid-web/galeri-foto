@@ -1,10 +1,17 @@
-import { signOut } from "next-auth/react";
+"use client"
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import logout from "/public/logout.png"
 
-function Sidebar({ isVisible }: { isVisible: boolean }) {
+function Sidebar({ isVisible}: { isVisible: boolean, }) {
+  const session = useSession()
+
+  // @ts-ignore
+  const isAdmin = session.data?.user.role === "admin" ? "/" : "/pegawai"
+
+  if(session.status !== "loading")
   return (
     <aside
       id="default-sidebar"
@@ -17,7 +24,7 @@ function Sidebar({ isVisible }: { isVisible: boolean }) {
         <ul className="space-y-2 font-medium">
           <li>
             <Link
-              href="/"
+              href={`${isAdmin}/`}
               className="flex items-center p-2  rounded-lg text-white hover:bg-sky-500 hover:text-white group"
             >
               <svg
@@ -32,13 +39,15 @@ function Sidebar({ isVisible }: { isVisible: boolean }) {
               </svg>
               <span className="ms-3">Dashboard</span>
               <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium  bg-sky-500 hover:text-white rounded-full">
-                Admin
+                {
+                  // @ts-ignore
+                session.data?.user.role === "admin" ? "Admin" : "Pegawai"}
               </span>
             </Link>
           </li>
           <li>
             <Link
-              href="/branch"
+              href={`${isAdmin}/branch`}
               className="flex items-center p-2  rounded-lg text-white hover:bg-sky-500 hover:text-white group"
             >
               <svg
@@ -55,7 +64,7 @@ function Sidebar({ isVisible }: { isVisible: boolean }) {
           </li>
           <li>
             <Link
-              href="/galery"
+              href={`${isAdmin}/galery`}
               className="flex items-center p-2  rounded-lg text-white hover:bg-sky-500 hover:text-white group"
             >
               <svg
@@ -75,7 +84,7 @@ function Sidebar({ isVisible }: { isVisible: boolean }) {
           </li>
           <li>
             <Link
-              href="/report"
+              href={`${isAdmin}/report`}
               className="flex items-center p-2  rounded-lg text-white hover:bg-sky-500 hover:text-white group"
             >
               <svg

@@ -4,6 +4,7 @@ import { cabang } from "@/static";
 import { History } from "@/types";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { getSession } from "next-auth/react";
 
 // components/BranchForm.tsx
 import React, { ChangeEvent, useState } from "react";
@@ -46,6 +47,7 @@ const BranchForm: React.FC = () => {
 
   const handleUpload = async (data: History) => {
     if (!file) return;
+    const session = await getSession()
 
     try {
       const photoUrl = file
@@ -53,6 +55,8 @@ const BranchForm: React.FC = () => {
         ...data,
         photoUrl,
         createdAt: new Date(),
+        // @ts-ignore
+        branch: session?.user.user.branch
       });
 
       reset();
@@ -114,28 +118,6 @@ const BranchForm: React.FC = () => {
           <option value="Kategori 3">Kategori 3</option>
         </select>
         {errors.category && (
-          <p className="text-red-500 mt-1">Kategori diperlukan.</p>
-        )}
-      </div>
-
-      <div className="flex flex-col">
-        <label
-          htmlFor="branch"
-          className="mb-2 text-lg font-medium text-gray-700"
-        >
-          Cabang
-        </label>
-        <select
-          id="branch"
-          {...register("branch", { required: true })}
-          className="p-2 border border-gray-300 rounded-md"
-        >
-          {
-          
-            cabang.map(c=><option key={c.toLowerCase()} value={c}>{c}</option>)
-          }          
-        </select>
-        {errors.branch && (
           <p className="text-red-500 mt-1">Kategori diperlukan.</p>
         )}
       </div>

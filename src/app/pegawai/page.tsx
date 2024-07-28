@@ -8,7 +8,7 @@ export default function page() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-sky-700 font-semibold text-center mb-24 underline text-4xl">
-        Selamat Datang Pada Halaman Admin
+        Selamat Datang Pada Halaman Pegawai
       </h1>
 
       <div className="grid grid-cols-3 justify-between w-full items-center gap-8">

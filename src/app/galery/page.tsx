@@ -5,6 +5,7 @@ import { database } from "@/lib/firebase";
 import { cabang } from "@/static";
 import { Cabang, History } from "@/types";
 import { collection, onSnapshot } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { Key } from "readline";
 
@@ -36,7 +37,7 @@ const Page = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-semibold capitalize text-sky-700 text-center mb-8">Galery {selectedBranch ? selectedBranch : "Semua Cabang"}</h1>
+       <h1 className="text-4xl font-semibold capitalize text-sky-700 text-center mb-8">Galery {selectedBranch ? selectedBranch : "Semua Cabang"}</h1>
 
       <ul className="flex gap-4 flex-wrap justify-center mx-auto mb-8 overflow-auto items-stretch place-items-center">
         <li

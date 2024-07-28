@@ -6,18 +6,33 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import bgPelindo from "/public/pelindo.png";
 import { FormValues } from "@/types";
 import { signIn } from "next-auth/react";
+import { cabang } from "@/static";
+import { addDoc, collection } from "firebase/firestore";
+import { database } from "@/lib/firebase";
+import { toast } from "sonner";
 
 export default function Home() {
   const { register, handleSubmit } = useForm<FormValues>();
   const router = useRouter();
+  const akunCollection = collection(database, "akun")
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      role: data.role,
-      callbackUrl:"/"
-    });
+    
+    toast.promise(addDoc(akunCollection, data),{
+        loading: "Membuat Akun...",
+        success: ()=>{
+            router.push('/auth/signin')
+            return `Akun Baru dengan Cabang: ${data.branch} berhasil di buat`
+        },
+        error: "Gagal Membuat Akun!"
+    })
+
+    // await signIn("credentials", {
+    //   username: data.username,
+    //   password: data.password,
+    //   role: data.role,
+    //   callbackUrl: "/",
+    // });
     // Anda bisa menambahkan logika autentikasi di sini
     // router.push("/dashboard"); // Ganti '/dashboard' dengan path tujuan setelah login berhasil
   };
@@ -40,7 +55,7 @@ export default function Home() {
             <div>
               <input
                 type="text"
-                placeholder="email"
+                placeholder="Email"
                 {...register("email", { required: true })}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
@@ -55,25 +70,28 @@ export default function Home() {
             </div>
             <div>
               <select
-                {...register("role", { required: true })}
+                {...register("branch", { required: true })}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                {cabang.map((c) => (
+                  <option key={c.toLowerCase()} value={c}>
+                    {c}
+                  </option>
+                ))}
               </select>
             </div>
             <button
               type="submit"
               className="w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
             >
-              Login
+              Daftar
             </button>
           </form>
           <div className="text-center">
             <p>
-              Belum punya akun?{" "}
-              <a href="/auth/signup" className="text-blue-600 hover:underline">
-                daftar DISINI
+              Sudah punya akun?{" "}
+              <a href="/auth/signin" className="text-blue-600 hover:underline">
+                masuk disini
               </a>
             </p>
           </div>
