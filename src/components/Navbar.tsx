@@ -22,7 +22,7 @@ function Navbar({ isVisible }: { isVisible: boolean }) {
             alt="Flowbite Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            PT. Pelindo
+            PT. Pelindo Multi Terminal
           </span>
         </Link>
         <button

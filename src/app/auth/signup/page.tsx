@@ -50,7 +50,7 @@ export default function Home() {
 
       <div className="flex items-center justify-center min-h-screen bg-blue-50">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8 space-y-6">
-          <h1 className="text-2xl font-bold text-center">Login</h1>
+          <h1 className="text-2xl font-bold text-center">Daftar Akun</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <input
