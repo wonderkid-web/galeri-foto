@@ -13,7 +13,7 @@ export default function Home() {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await signIn("credentials", {
-      email: data.email,
+      username: data.username,
       password: data.password,
       role: data.role,
       callbackUrl:"/"
@@ -40,8 +40,8 @@ export default function Home() {
             <div>
               <input
                 type="text"
-                placeholder="email"
-                {...register("email", { required: true })}
+                placeholder="username"
+                {...register("username", { required: true })}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
