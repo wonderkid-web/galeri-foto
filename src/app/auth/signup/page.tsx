@@ -55,8 +55,8 @@ export default function Home() {
             <div>
               <input
                 type="text"
-                placeholder="Email"
-                {...register("email", { required: true })}
+                placeholder="Username"
+                {...register("username", { required: true })}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
