@@ -3,7 +3,6 @@ import { database, imageDb } from "@/lib/firebase";
 import { cabang } from "@/static";
 import { History } from "@/types";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 // components/BranchForm.tsx
 import React, { ChangeEvent, useState } from "react";
@@ -13,7 +12,6 @@ import { toast } from "sonner";
 
 const BranchForm: React.FC = () => {
   const [file, setFile] = useState<ArrayBuffer | string | null>();
-  const [progress, setProgress] = useState<number>(0);
 
   const {
     register,
