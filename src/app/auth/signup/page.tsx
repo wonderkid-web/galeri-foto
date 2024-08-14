@@ -28,7 +28,7 @@ export default function Home() {
     })
 
     // await signIn("credentials", {
-    //   username: data.username,
+    //   email: data.email,
     //   password: data.password,
     //   role: data.role,
     //   callbackUrl: "/",
