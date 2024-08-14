@@ -89,9 +89,24 @@ const EditBranchForm: React.FC<{ id: History["id"] }> = ({ id }) => {
           {...register("branch", { required: true })}
           className="p-2 border border-gray-300 rounded-md"
         >
-          <option value="lhokseumawe">Lhoksuemawe</option>
+           <option value="lhokseumawe">Badas</option>
           <option value="bagendang">Bagendang</option>
-          <option value="medan">Medan</option>
+          <option value="medan">Balikpapan</option>
+          <option value="lhokseumawe">Belawan</option>
+          <option value="bagendang">Bumiharjo</option>
+          <option value="medan">Dumai</option>
+          <option value="medan">Garongkong</option>
+          <option value="medan">Gresik</option>
+          <option value="medan">Jamrud Nilam Mirah</option>
+          <option value="medan">Lembar</option>
+          <option value="medan">Lhokseumawe</option>
+          <option value="medan">Makassar</option>
+          <option value="medan">Malayahati</option>
+          <option value="medan">Pare-Pare</option>
+          <option value="medan">Tanjung Emas</option>
+          <option value="medan">Tanjung Intan</option>
+          <option value="medan">Tanjung Wangi</option>
+          <option value="medan">Trisakti</option>
         </select>
         {errors.branch && <p className="text-red-500 mt-1">Cabang diperlukan.</p>}
       </div>
