@@ -73,9 +73,9 @@ const EditBranchForm: React.FC<{ id: History["id"] }> = ({ id }) => {
           {...register("category", { required: true })}
           className="p-2 border border-gray-300 rounded-md"
         >
-          <option value="Kategori 1">Kategori 1</option>
-          <option value="Kategori 2">Kategori 2</option>
-          <option value="Kategori 3">Kategori 3</option>
+          <option value="Kategori 1">Pilar Sosial</option>
+          <option value="Kategori 2">Pilar Ekonomi</option>
+          <option value="Kategori 3">Pilar Lingkungan</option>
         </select>
         {errors.category && <p className="text-red-500 mt-1">Kategori diperlukan.</p>}
       </div>
