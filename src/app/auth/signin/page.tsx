@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import bgPelindo from "/public/pelindo.png";
 import { FormValues } from "@/types";
@@ -9,7 +8,6 @@ import { signIn } from "next-auth/react";
 
 export default function Home() {
   const { register, handleSubmit } = useForm<FormValues>();
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await signIn("credentials", {

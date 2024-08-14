@@ -1,6 +1,5 @@
 import { UUID } from "crypto";
 import { StaticImageData } from "next/image";
-import { URL } from "url";
 
 export type KantorType = {
   nama: string;
