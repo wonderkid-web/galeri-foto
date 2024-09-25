@@ -87,7 +87,7 @@ const Report = ({ history }: { history: History[] }) => {
           title="LAPORAN TAHUNAN"
           date="22 Juli 2024"
           companyName="PT. PELINDO SUMATERA UTARA"
-          companyAddress="No. 100, Jl. Krakatau Ujung, Tanjung Mulia, Medan Deli, Medan City, North Sumatra 20241"
+          companyAddress="Jl. Lingkar Pelabuhan No. 1, Belawan, Medan 20411"
         />
         <View style={styles.table}>
           {/* Header Tabel */}

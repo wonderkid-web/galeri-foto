@@ -113,7 +113,7 @@ const EventPDFPage = () => {
       {filteredHistory.length > 0 && (
         <>
           <h1 className="text-2xl mb-4 text-sky-600">
-            Sample PDF yang akan terdownload
+            PDF yang akan terdownload
           </h1>
           <div className=" h-screen flex gap-8 flex-col justify-center items-center">
             <PDFViewer className="w-full mx-auto h-full">
