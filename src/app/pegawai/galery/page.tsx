@@ -23,7 +23,7 @@ const Page = () => {
             "branch",
             "==",
             // @ts-ignore
-            session?.user?.user?.branch.toLowerCase() as string
+            session?.user?.user?.branch as string
           )
         );
         const unsubscribe = onSnapshot(queryByBranch, (snapshot) => {
