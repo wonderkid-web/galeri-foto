@@ -24,7 +24,8 @@ const BranchForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<History> = (data) => {
     if (!file) return;
-    handleUpload(data);
+    console.log(data)
+    // handleUpload(data);
     // handle form submission
   };
 
@@ -107,9 +108,9 @@ const BranchForm: React.FC = () => {
           {...register("category", { required: true })}
           className="p-2 border border-gray-300 rounded-md"
         >
-          <option value="Kategori 1">Pilar Sosial</option>
-          <option value="Kategori 2">Pilar Ekonomi</option>
-          <option value="Kategori 3">Pilar Lingkungan</option>
+          <option value="Pilar Sosial">Pilar Sosial</option>
+          <option value="Pilar Ekonomi">Pilar Ekonomi</option>
+          <option value="Pilar Lingkungan">Pilar Lingkungan</option>
         </select>
         {errors.category && (
           <p className="text-red-500 mt-1">Kategori diperlukan.</p>
