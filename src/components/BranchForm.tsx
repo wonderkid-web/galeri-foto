@@ -24,8 +24,7 @@ const BranchForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<History> = (data) => {
     if (!file) return;
-    console.log(data)
-    // handleUpload(data);
+    handleUpload(data);
     // handle form submission
   };
 
