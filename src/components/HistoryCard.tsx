@@ -8,7 +8,7 @@ import DeleteButton from './DeleteButton';
 const HistoryCard = ( {history, isAdmin = ""} : {history: History, isAdmin?:string}) => {
   const { newsLink, branch, createdAt, category, photoUrl, eventDate, description, id } = history
 
-  if(!history.category) return <p>Kosong</p>
+  if(!history.category) return <p>Belum Ada History Apapun</p>
   return (
     <div className="rounded overflow-hidden shadow-lg bg-sky-700 m-4 flex flex-col justify-between">
       <img className="w-full" src={photoUrl} alt={description} />

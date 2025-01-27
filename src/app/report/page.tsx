@@ -37,8 +37,52 @@ const EventPDFPage = () => {
     })();
   }, []);
 
+  // const filterHistory = (hs: History) => {
+  //   const [tahun, bulan, tanggal] = hs.eventDate.split("-") || ["2025", "05", "21"];
+  //   const startDate = selected[0].startDate;
+  //   const endDate = selected[0].endDate;
+
+  //   if (!startDate || !endDate) return false;
+
+  //   const eventDate = new Date(
+  //     parseInt(tahun),
+  //     parseInt(bulan) - 1,
+  //     parseInt(tanggal)
+  //   );
+
+  //   switch (filteredType) {
+  //     case "hari":
+  //       return (
+  //         eventDate >=
+  //           new Date(
+  //             startDate.getFullYear(),
+  //             startDate.getMonth(),
+  //             startDate.getDate()
+  //           ) &&
+  //         eventDate <=
+  //           new Date(
+  //             endDate.getFullYear(),
+  //             endDate.getMonth(),
+  //             endDate.getDate()
+  //           )
+  //       );
+  //     case "minggu":
+  //       return eventDate >= startDate && eventDate <= endDate;
+  //     case "tahun":
+  //       return eventDate.getFullYear() === startDate.getFullYear();
+  //     case "all":
+  //       return true;
+  //     default:
+  //       return false;
+  //   }
+  // };
   const filterHistory = (hs: History) => {
-    const [tahun, bulan, tanggal] = hs.eventDate.split("-");
+    // Pastikan eventDate ada dan tidak undefined atau null
+    if (!hs.eventDate) return false;
+
+    const [tahun, bulan, tanggal] = hs.eventDate.split("-") || [];
+    if (!tahun || !bulan || !tanggal) return false; // Pastikan data lengkap sebelum melanjutkan
+
     const startDate = selected[0].startDate;
     const endDate = selected[0].endDate;
 
@@ -46,7 +90,7 @@ const EventPDFPage = () => {
 
     const eventDate = new Date(
       parseInt(tahun),
-      parseInt(bulan) - 1,
+      parseInt(bulan) - 1, // Bulan dalam JavaScript dimulai dari 0
       parseInt(tanggal)
     );
 

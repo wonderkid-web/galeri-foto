@@ -1,20 +1,19 @@
 "use client";
-import { database, imageDb } from "@/lib/firebase";
+import { database } from "@/lib/firebase";
 import { cabang } from "@/static";
 import { History } from "@/types";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { getSession } from "next-auth/react";
 
 // components/BranchForm.tsx
 import React, { ChangeEvent, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
-
+import { UploadImage } from "./UploadImage";
 
 const BranchForm: React.FC = () => {
-  const [file, setFile] = useState<ArrayBuffer | string | null>();
-  const [progress, setProgress] = useState<number>(0);
+  const [image, setImage] = useState<string | null>();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -26,40 +25,27 @@ const BranchForm: React.FC = () => {
   const historyCollection = collection(database, "history");
 
   const onSubmit: SubmitHandler<History> = (data) => {
-    if (!file) return;
+    if (!image) return;
+    setLoading(true);
     handleUpload(data);
+    setLoading(false);
     // handle form submission
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const rawFile = e.target.files[0];
-
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setFile(reader.result);
-      };
-
-      reader.readAsDataURL(rawFile)
-    }
-  };
-
   const handleUpload = async (data: History) => {
-    if (!file) return;
-    const session = await getSession()
+    const session = await getSession();
 
     try {
-      const photoUrl = file
       await addDoc(historyCollection, {
         ...data,
-        photoUrl,
+        photoUrl: image,
         createdAt: new Date(),
         // @ts-ignore
-        branch: session?.user.user.branch
+        branch: session?.user.user.branch,
       });
 
       reset();
+      setImage(null);
 
       toast.success("History Berhasil di tambah");
     } catch (error) {
@@ -124,21 +110,6 @@ const BranchForm: React.FC = () => {
 
       <div className="flex flex-col">
         <label
-          htmlFor="photo"
-          className="mb-2 text-lg font-medium text-gray-700"
-        >
-          Upload Foto
-        </label>
-        <input
-          type="file"
-          id="photo"
-          onChange={handleFileChange}
-          className="p-3 border border-gray-300 rounded-md"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label
           htmlFor="description"
           className="mb-2 text-lg font-medium text-gray-700"
         >
@@ -190,11 +161,28 @@ const BranchForm: React.FC = () => {
         )}
       </div>
 
+      <div className="flex flex-col">
+        <label
+          htmlFor="photo"
+          className="mb-2 text-lg font-medium text-gray-700"
+        >
+          Upload Foto
+        </label>
+        <UploadImage setImage={setImage} />
+        {/* <input
+              type="file"
+              id="photo"
+              onChange={handleFileChange}
+              className="p-3 border border-gray-300 rounded-md"
+            /> */}
+      </div>
+
       <button
         type="submit"
+        disabled={loading}
         className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
       >
-        Submit
+        {loading ? "mengupload.." : "submit"}
       </button>
     </form>
   );
