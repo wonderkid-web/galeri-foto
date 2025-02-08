@@ -11,7 +11,8 @@ import {
 import { History } from "@/types";
 import Header from "./Header";
 import { formatter } from "@/static";
-
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 // Create styles
 
 const styles = StyleSheet.create({
@@ -80,12 +81,13 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const Report = ({ history }: { history: History[] }) => {
+  const today = format(new Date(), "d MMMM yyyy", { locale: id });
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Header
           title="LAPORAN TAHUNAN"
-          date="22 Juli 2024"
+          date={today}
           companyName="DEPARTEMEN TANGGUNG JAWAB SOSIAL & LINGKUNGAN | PT. PELINDO MULTI TERMINAL"
           companyAddress="Jl. Lingkar Pelabuhan No. 1, Belawan, Medan 20411"
         />
