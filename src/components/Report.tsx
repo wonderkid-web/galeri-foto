@@ -86,7 +86,7 @@ const Report = ({ history }: { history: History[] }) => {
         <Header
           title="LAPORAN TAHUNAN"
           date="22 Juli 2024"
-          companyName="PT. PELINDO SUMATERA UTARA"
+          companyName="DEPARTEMEN TANGGUNG JAWAB SOSIAL & LINGKUNGAN | PT. PELINDO MULTI TERMINAL"
           companyAddress="Jl. Lingkar Pelabuhan No. 1, Belawan, Medan 20411"
         />
         <View style={styles.table}>
