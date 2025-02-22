@@ -33,11 +33,9 @@ const EventPDFPage = () => {
       const session = await getSession()
       const collectionRef = collection(database, "history");
       // @ts-ignore
-      const queryByBranch = query(collectionRef, where("branch", "==", session?.user.user.branch.toLowerCase() as string))
+      const queryByBranch = query(collectionRef, where("branch", "==", session?.user.user.branch as string))
       const querySnapshot = await getDocs(queryByBranch);
       const docs = querySnapshot.docs.map((doc) => doc.data());
-
-      console.log(docs)
 
       setHistory(docs as History[]);
     })();
@@ -55,6 +53,8 @@ const EventPDFPage = () => {
       parseInt(bulan) - 1,
       parseInt(tanggal)
     );
+
+    console.log(hs)
 
     switch (filteredType) {
       case "hari":
@@ -121,6 +121,9 @@ const EventPDFPage = () => {
           <h1 className="text-2xl mb-4 text-sky-600">
             PDF yang akan terdownload
           </h1>
+          <pre>
+            {JSON.stringify(filterHistory)}
+          </pre>
           <div className=" h-screen flex gap-8 flex-col justify-center items-center">
             <PDFViewer className="w-full mx-auto h-full">
               <Report history={filteredHistory} />

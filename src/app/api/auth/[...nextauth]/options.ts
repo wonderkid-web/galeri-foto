@@ -49,7 +49,7 @@ export const option: AuthOptions = {
   },
   callbacks: {
 
-    async jwt({ user, session, token }) {
+    async jwt({ user, token }) {
       return {...token,...user};
     },
 
